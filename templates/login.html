@@ -1,0 +1,38 @@
+{% extends 'generic/base.html' %}
+
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<p class="fs-1 mb-5">Log In</p>
+
+<p class="text-danger fs-4 mb-5">Error</p>
+
+<form action="#" class="mx-0 mx-md-5" method="post" enctype="multipart/form-data">
+    <div class="row mb-3">
+        <div class="col-12 col-md-2 mb-1 mb-md-0">
+            Login
+        </div>
+
+        <div class="col-12 col-md-10">
+            <input type="text" class="w-100">
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 col-md-2 mb-1 mb-md-0">
+            Password
+        </div>
+
+        <div class="col-12 col-md-10">
+            <input type="password" class="w-100">
+        </div>
+    </div>
+
+    <button type="submit">Log In!</button>
+</form>
+
+<a href="/register" class="d-block mt-5 mx-0 mx-md-5">create new account</a>
+
+{% endblock %}

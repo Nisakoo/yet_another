@@ -1,0 +1,19 @@
+<!-- TODO: Реализовать Question List и вставить его на главную и в теги -->
+{% extends 'generic/base.html' %}
+
+{% block content %}
+<div class="row mb-5">
+    {% block questions_title %}
+    {% endblock %}
+</div>
+
+{% include 'questions/card.html' with Image='images/image.png' Rating=10000 %}
+{% include 'questions/card.html' with Image='images/image.png' %}
+
+<!-- {% for question in questions %}
+    
+{% endfor %} -->
+
+{% include 'generic/paginator.html' with Pages=3 BaseUrl="hello" CurrentPage=2 %}
+
+{% endblock %}

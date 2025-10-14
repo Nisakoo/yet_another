@@ -1,0 +1,45 @@
+{% extends 'generic/base.html' %}
+
+{% block title %}New Question{% endblock %}
+
+{% block content %}
+
+<p class="fs-1 mb-5">New Question</p>
+
+<p class="text-danger fs-4 mb-5">Error</p>
+
+<form action="#" class="mx-0 mx-md-5">
+    <div class="row mb-3">
+        <div class="col-12 col-md-2 mb-1 mb-md-0">
+            Title
+        </div>
+
+        <div class="col-12 col-md-10">
+            <input type="text" class="w-100">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 col-md-2 mb-1 mb-md-0">
+            Text
+        </div>
+
+        <div class="col-12 col-md-10">
+            <textarea name="" id="" class="w-100"></textarea>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 col-md-2 mb-1 mb-md-0">
+            Tags
+        </div>
+
+        <div class="col-12 col-md-10">
+            <input type="text" class="w-100">
+        </div>
+    </div>
+
+    <button type="submit">ASK</button>
+</form>
+
+{% endblock %}

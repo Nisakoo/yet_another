@@ -1,0 +1,37 @@
+{% load static %}
+<div class="border-top mt-3 pt-3">
+    <div class="row">
+        <div class="col-2">
+            <div>
+                <img src="{% static Image %}" class="middle-img d-block m-auto rounded-circle border-3 p-1" alt="Image here">
+            </div>
+        </div>
+
+        <div class="col-8">
+            <a href="/" class="d-block mb-3 fs-3">
+                {{ Title|default:"Title here" }}
+            </a>
+            <p>
+                {{ Description|default:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat" }}
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            {% include 'generic/rating_buttons.html' %}
+        </div>
+        <div class="col-8">
+            <a href="/" class="me-5">
+                Ответов ({{ AnswersCount|default:0 }})
+            </a>
+
+            {% for tag in Tags %}
+                <mark>{{ tag }}</mark>
+            {% endfor %}
+
+            <mark>Python</mark>
+            <mark>Django</mark>
+            <mark>Hello</mark>
+        </div>
+    </div>
+</div>

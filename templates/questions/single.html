@@ -1,0 +1,55 @@
+{% extends 'generic/base.html' %}
+
+{% load static %}
+
+{% block title %}Question{% endblock %}
+
+{% block content %}
+<div class="row mb-5">
+    <div class="col-3">
+        <div class="mb-4">
+            <img src="{% static Image|default:'images/image.png' %}"
+                class="large-img d-block m-auto rounded-circle border-3 p-1" alt="Image here">
+        </div>
+
+        {% include 'generic/rating_buttons.html' %}
+    </div>
+
+    <div class="col-9">
+        <p class="fs-2 mt-0">{{ Title|default:"Question Title" }}</p>
+        <p>
+            {{ Description|default:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam cupiditate labore aspernatur debitis facilis ut quam? Similique molestiae suscipit alias expedita! Corporis, sed aliquam. Aut qui excepturi mollitia cum commodi?" }}
+        </p>
+
+        <div>
+            <span>Tags: </span>
+
+            {% for tag in Tags %}
+            <mark>{{ tag }}</mark>
+            {% endfor %}
+
+            <mark>Python</mark>
+            <mark>Django</mark>
+            <mark>Hello</mark>
+        </div>
+    </div>
+</div>
+
+<p class="fs-4 mt-5">
+    Answers
+</p>
+
+{% include 'answers/card.html' %}
+
+<div class="mt-5">
+    <form action="#">
+        <textarea name="" id="" placeholder="Your answer" class="w-100 mb-1"></textarea>
+
+        <button type="submit">
+            Answer
+        </button>
+    </form>
+</div>
+
+
+{% endblock %}

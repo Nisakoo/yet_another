@@ -1,0 +1,9 @@
+[project]
+name = "blazing"
+version = "0.1.0"
+description = "Blazingly fast answer for any questions"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=5.2.7",
+]

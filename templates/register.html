@@ -1,0 +1,77 @@
+{% extends 'generic/base.html' %}
+
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+<p class="fs-1 mb-5">Register</p>
+
+<p class="text-danger fs-4 mb-5">Error</p>
+
+<form action="#" class="mx-0 mx-md-5" method="post" enctype="multipart/form-data">
+    <div class="row mb-3">
+        <div class="col-12 col-md-2 mb-1 mb-md-0">
+            Login
+        </div>
+
+        <div class="col-12 col-md-10">
+            <input type="text" class="w-100">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 col-md-2 mb-1 mb-md-0">
+            Email
+        </div>
+
+        <div class="col-12 col-md-10">
+            <input type="email" class="w-100">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 col-md-2 mb-1 mb-md-0">
+            NickName
+        </div>
+
+        <div class="col-12 col-md-10">
+            <input type="text" class="w-100">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 col-md-2 mb-1 mb-md-0">
+            Password
+        </div>
+
+        <div class="col-12 col-md-10">
+            <input type="password" class="w-100">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 col-md-2 mb-1 mb-md-0">
+            Repeat password
+        </div>
+
+        <div class="col-12 col-md-10">
+            <input type="password" class="w-100">
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 col-md-2 mb-1 mb-md-0">
+            Upload avatar
+        </div>
+
+        <div class="col-12 col-md-10">
+            <input type="file" class="w-100" accept="image/*">
+        </div>
+    </div>
+
+    <button type="submit">Register</button>
+</form>
+
+{% endblock %}
