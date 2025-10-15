@@ -5,34 +5,41 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<p class="fs-1 mb-5">Log In</p>
+<p class="fs-2 mb-5">Log In</p>
 
-<p class="text-danger fs-4 mb-5">Error</p>
+<p class="text-danger fs-4 mb-5">Error placeholder</p>
 
-<form action="#" class="mx-0 mx-md-5" method="post" enctype="multipart/form-data">
+<form action="#" class="mx-0 mx-md-5 mb-5" method="post" enctype="multipart/form-data">
     <div class="row mb-3">
-        <div class="col-12 col-md-2 mb-1 mb-md-0">
+        <div class="col-12 mb-2">
             Login
         </div>
 
-        <div class="col-12 col-md-10">
+        <div class="col-12 col-lg-6 col-md-8">
             <input type="text" class="w-100">
         </div>
     </div>
 
     <div class="row mb-5">
-        <div class="col-12 col-md-2 mb-1 mb-md-0">
+        <div class="col-12 mb-2">
             Password
         </div>
 
-        <div class="col-12 col-md-10">
+        <div class="col-12 col-lg-6 col-md-8">
             <input type="password" class="w-100">
         </div>
     </div>
 
-    <button type="submit">Log In!</button>
+    <div class="row">
+        <div class="col-12 col-md-auto">
+            <button type="submit">Log In</button>
+        </div>
+
+        <div class="d-flex col-12 col-md-auto align-items-center mt-2 mt-md-0">
+            <a href="{% url 'register' %}">or create new account</a>
+        </div>
+    </div>
 </form>
 
-<a href="/register" class="d-block mt-5 mx-0 mx-md-5">create new account</a>
 
 {% endblock %}

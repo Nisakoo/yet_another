@@ -8,7 +8,7 @@
         </div>
 
         <div class="col-8">
-            <a href="/" class="d-block mb-3 fs-3">
+            <a href="{% url 'question' '0' %}" class="d-block mb-3 fs-3">
                 {{ Title|default:"Title here" }}
             </a>
             <p>
@@ -21,7 +21,7 @@
             {% include 'generic/rating_buttons.html' %}
         </div>
         <div class="col-8">
-            <a href="/" class="me-5">
+            <a href="{% url 'question' '0' %}" class="me-5">
                 Ответов ({{ AnswersCount|default:0 }})
             </a>
 

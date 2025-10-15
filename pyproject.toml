@@ -1,7 +1,7 @@
 [project]
-name = "blazing"
+name = "yet-another"
 version = "0.1.0"
-description = "Blazingly fast answer for any questions"
+description = "Yet another Q&A service"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

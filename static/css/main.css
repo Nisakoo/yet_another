@@ -1,21 +1,33 @@
 .small-img {
+    max-width: 50px;
+    max-height: 50px;
+
     width: 50px;
-    height: 50px;
+    height: auto;
 }
 
 .middle-img {
+    max-width: 80px;
+    max-height: 80px;
+
     width: 80px;
-    height: 80px;
+    height: auto;
 }
 
 .large-img {
+    max-width: 100px;
+    max-height: 100px;
+
     width: 100px;
-    height: 100px;
+    height: auto;
 }
 
 .extra-large-img {
+    max-width: 170px;
+    max-height: 170px;
+
     width: 170px;
-    height: 170px;
+    height: auto;
 }
 
 .like-button {

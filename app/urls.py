@@ -18,7 +18,7 @@ urlpatterns = [
     path('register', RegisterView.as_view(), name='register'),
     path('settings', SettingsView.as_view(), name='settings'),
     path('hot', HotQuestionsView.as_view(), name='hot'),
-    path('tag/<str:tag>', QuestionsByTagView.as_view(), name='by-tag'),
+    path('tag/<str:tag>', QuestionsByTagView.as_view(), name='tag'),
     path('question/<int:question_id>', QuestionView.as_view(), name='question'),
     path('ask', AskView.as_view(), name='ask'),
 ]

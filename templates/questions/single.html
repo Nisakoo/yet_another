@@ -9,7 +9,7 @@
     <div class="col-3">
         <div class="mb-4">
             <img src="{% static Image|default:'images/image.png' %}"
-                class="large-img d-block m-auto rounded-circle border-3 p-1" alt="Image here">
+                class="d-block large-img m-auto rounded-circle border-3 p-1" alt="Image here">
         </div>
 
         {% include 'generic/rating_buttons.html' %}
@@ -42,12 +42,9 @@
 {% include 'answers/card.html' %}
 
 <div class="mt-5">
-    <form action="#">
+    <form action="#" class="col-12 col-lg-6 col-md-8">
         <textarea name="" id="" placeholder="Your answer" class="w-100 mb-1"></textarea>
-
-        <button type="submit">
-            Answer
-        </button>
+        <button type="submit">Answer</button>
     </form>
 </div>
 

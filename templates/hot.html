@@ -4,10 +4,10 @@
 
 {% block questions_title %}
 <div class="col-10">
-    <p class="fs-1">Hot questions</p>
+    <span class="fs-2">Hot questions</span>
 </div>
 
 <div class="d-flex col-2 align-items-center">
-    <a href="/ask" role="button" class="fs-3">Ask!</a>
+    <a href="{% url 'ask' %}" role="button" class="fs-3">Ask!</a>
 </div>
 {% endblock %}
