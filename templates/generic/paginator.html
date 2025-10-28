@@ -1,10 +1,10 @@
-<div class="paginator text-center mt-5">
-    <a href="#" class="me-3"><<</a>
-    
-    <a href="#">1</a>
-    <a href="#">2</a>
-    <span>...</span>
-    <a href="#">10</a>
+<div class="text-center my-5">
 
-    <a href="#" class="ms-3">>></a>
+    <a href="?page=1" class="me-3 {{ page_obj.has_previous|yesno:',disabled' }}"><<</a>
+
+    <a href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}" class="{{ page_obj.has_previous|yesno:',disabled' }}"><</a>
+    <a href="#" class="mx-1">{{ page_obj.number }}</a>
+    <a href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}" class="{{ page_obj.has_next|yesno:',disabled' }}">></a>
+
+    <a href="?page={{ page_obj.paginator.num_pages }}" class="ms-3 {{ page_obj.has_next|yesno:',disabled' }}">>></a>
 </div>

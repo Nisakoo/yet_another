@@ -39,3 +39,13 @@
     border-radius: 50%;
     background-color: #333;
 }
+
+a.disabled {
+    pointer-events: none;
+    color: gray;
+}
+
+a.current-page {
+    pointer-events: none;
+    color: white;
+}

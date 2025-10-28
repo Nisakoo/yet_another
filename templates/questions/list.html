@@ -1,19 +1,16 @@
-<!-- TODO: Реализовать Question List и вставить его на главную и в теги -->
 {% extends 'generic/base.html' %}
 
 {% block content %}
 <div class="row mb-5">
-    {% block questions_title %}
+    {% block questions_top_block %}
     {% endblock %}
 </div>
 
-{% include 'questions/card.html' with Image='images/image.png' Rating=10000 %}
-{% include 'questions/card.html' with Image='images/image.png' %}
 
-<!-- {% for question in questions %}
-    
-{% endfor %} -->
+{% for question in page_obj.object_list %}
+    {% include 'questions/card.html' with question=question image='images/image.png' %}
+{% endfor %}
 
-{% include 'generic/paginator.html' with Pages=3 BaseUrl="hello" CurrentPage=2 %}
+{% include 'generic/paginator.html' with page_obj=page_obj %}
 
 {% endblock %}

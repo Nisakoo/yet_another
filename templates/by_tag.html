@@ -2,9 +2,9 @@
 
 {% block title %}By tag{% endblock %}
 
-{% block questions_title %}
+{% block questions_top_block %}
 <div class="col-10">
-    <span class="fs-2">Tag: {{ Tag|default:"Example" }}</span>
+    <span class="fs-2">Tag: {{ tag|default:"Default tag" }}</span>
 </div>
 
 <div class="d-flex col-2 align-items-center">
