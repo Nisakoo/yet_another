@@ -9,24 +9,24 @@
         </div>
 
         <div class="col-8">
-            <a href="{% url 'question' '0' %}" class="d-block mb-3 fs-3">
+            <a href="{% url 'question' question.id %}" class="d-block mb-3 fs-3">
                 {{ question.title|default:"Title here" }}
             </a>
             <p>
-                {{ question.description|default:"Question default description" }}
+                {{ question.text|default:"Question default description" }}
             </p>
         </div>
     </div>
     <div class="row">
         <div class="col-2">
-            {% include 'generic/rating_buttons.html' %}
+            {% include 'generic/rating_buttons.html' with rating=question.rating %}
         </div>
         <div class="col-8">
-            <a href="{% url 'question' '0' %}" class="me-5">
-                Ответов ({{ question.answers_count|default:0 }})
+            <a href="{% url 'question' question.id %}" class="me-5">
+                Ответов ({{ question.answer_set.count|default:0 }})
             </a>
 
-            {% for tag in question.tags %}
+            {% for tag in question.tags.all %}
                 <mark>{{ tag }}</mark>
             {% endfor %}
         </div>

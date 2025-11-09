@@ -1,4 +1,4 @@
-{% extends 'generic/base.html' %}
+{% extends 'generic/main.html' %}
 
 {% load static %}
 
@@ -12,25 +12,21 @@
                 class="d-block large-img m-auto rounded-circle border-3 p-1" alt="Image here">
         </div>
 
-        {% include 'generic/rating_buttons.html' %}
+        {% include 'generic/rating_buttons.html' with rating=question.rating %}
     </div>
 
     <div class="col-9">
-        <p class="fs-2 mt-0">{{ title|default:"Question default title" }}</p>
+        <p class="fs-2 mt-0">{{ question.title|default:"Question default title" }}</p>
         <p>
-            {{ description|default:"Question default description" }}
+            {{ question.text|default:"Question default description" }}
         </p>
 
         <div>
             <span>Tags: </span>
 
-            {% for tag in Tags %}
-            <mark>{{ tag }}</mark>
+            {% for tag in question.tags.all %}
+                <mark>{{ tag }}</mark>
             {% endfor %}
-
-            <mark>Python</mark>
-            <mark>Django</mark>
-            <mark>Hello</mark>
         </div>
     </div>
 </div>
@@ -39,7 +35,9 @@
     Answers
 </p>
 
-{% include 'answers/card.html' %}
+{% for answer in question.answer_set.with_rating %}
+    {% include 'answers/card.html' with answer=answer %}
+{% endfor %}
 
 <div class="mt-5">
     <form action="#" class="col-12 col-lg-6 col-md-8">

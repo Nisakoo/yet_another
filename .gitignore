@@ -7,12 +7,16 @@ wheels/
 *.egg-info
 
 # Virtual environments
-.venv
+.venv/
+.env
 
 # Ruff
-.ruff_check
+.ruff_check/
 
 # App
 *.sqlite3
+
+# IDE
+.vscode/
 
 .DS_Store

@@ -1,0 +1,43 @@
+{% extends 'generic/base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+    {% include 'generic/header.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-10">
+                {% block content %}
+                {% endblock %}
+            </div>
+
+            <div class="col-2 d-none d-md-block">
+                <p class="fs-4 mb-3">
+                    Popular Tags
+                </p>
+
+                <div>
+                    {% for tag in best_tags %}
+                        <a href="{% url 'tag' tag.name %}">{{ tag.name }}</a>
+                    {% endfor %}
+                </div>
+
+                <p class="fs-4 my-3">
+                    Best Members
+                </p>
+
+                <div>
+                    {% for member in best_members %}
+                        <p>
+                            <a href="#">{{ member.user.username }}</a>
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'generic/footer.html' %}
+{% endblock %}

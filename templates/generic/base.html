@@ -13,53 +13,8 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-    {% include 'generic/header.html' %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-10">
-                {% block content %}
-                {% endblock %}
-            </div>
-
-            <div class="col-2 d-none d-md-block">
-                <p class="fs-4 mb-3">
-                    Popular Tags
-                </p>
-
-                <div>
-                    <a href="{% url 'tag' 'Python' %}">Python</a>
-                    <a href="{% url 'tag' 'Django' %}">Django</a>
-                    <a href="{% url 'tag' 'Go' %}">Go</a>
-                    <a href="{% url 'tag' 'ML' %}">ML</a>
-                    <a href="{% url 'tag' 'WEB' %}">WEB</a>
-                    <a href="{% url 'tag' 'Rust' %}">Rust</a>
-                    <a href="{% url 'tag' 'Haskell' %}">Haskell</a>
-                </div>
-
-                <p class="fs-4 my-3">
-                    Best Members
-                </p>
-
-                <div>
-                    <p>
-                        <a href="#">Nisakoo</a>
-                    </p>
-                    <p>
-                        <a href="#">Luka</a>
-                    </p>
-                    <p>
-                        <a href="#">Danya</a>
-                    </p>
-                    <p>
-                        <a href="#">Artem</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% include 'generic/footer.html' %}
+    {% block body %}
+    {% endblock %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

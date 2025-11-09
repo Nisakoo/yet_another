@@ -10,16 +10,16 @@
 
         <div class="col-8">
             <p class="mt-0">
-                {{ description|default:"Answer default description" }}
+                {{ answer.text|default:"Answer default description" }}
             </p>
         </div>
     </div>
     <div class="row">
         <div class="col-2">
-            {% include 'generic/rating_buttons.html' %}
+            {% include 'generic/rating_buttons.html' with rating=answer.rating %}
         </div>
         <div class="col-8">
-            <input type="checkbox">
+            <input type="checkbox" {{ answer.is_correct|yesno:'checked,'}}>
             <span>Correct</span>
         </div>
     </div>
