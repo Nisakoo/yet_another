@@ -18,7 +18,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT)
     avatar = models.ImageField(upload_to="uploads", blank=True)
 
-    def __str__(self):
+    def __repr__(self):
         return self.user.username
     
 
@@ -37,7 +37,7 @@ class Tag(models.Model):
 
     name = models.CharField(max_length=50, unique=True)
 
-    def __str__(self):
+    def __repr__(self):
         return self.name
 
 
@@ -51,7 +51,7 @@ class QuestionQuerySet(models.QuerySet):
         )
     
     def get_by_tags(self, tags):
-        return self.get_hottest().filter(tags__name__in=tags)
+        return self.filter(tags__name__in=tags)
     
     def get_hottest(self):
         return self.with_rating().order_by("-rating")
@@ -73,7 +73,7 @@ class Question(models.Model):
 
     profile = models.ForeignKey(Profile, on_delete=models.PROTECT)
 
-    def __str__(self):
+    def __repr__(self):
         return self.title
 
 
@@ -99,7 +99,7 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.PROTECT)
     profile = models.ForeignKey(Profile, on_delete=models.PROTECT)
 
-    def __str__(self):
+    def __repr__(self):
         return self.text[:50]
 
 

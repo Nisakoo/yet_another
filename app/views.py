@@ -1,9 +1,7 @@
 import logging
 
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from django.views.generic import TemplateView, View
-from django.views.generic.base import TemplateResponseMixin
+from django.shortcuts import get_object_or_404
+from django.views.generic import TemplateView
 
 from .mixins import PaginatorMixin, StatisticsMixin
 from .models import (
@@ -47,13 +45,6 @@ class HotQuestionsView(PaginatorMixin, StatisticsMixin, TemplateView):
 
     def get_object_list(self):
         return Question.objects.get_hottest()
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-
-        context["page_obj"] = self.get_page_object(self.get_object_list())
-
-        return context
     
 
 class QuestionsByTagView(PaginatorMixin, StatisticsMixin, TemplateView):
@@ -61,12 +52,11 @@ class QuestionsByTagView(PaginatorMixin, StatisticsMixin, TemplateView):
     template_name = 'by_tag.html'
 
     def get_object_list(self):
-        return Question.objects.get_by_tags([self.kwargs["tag"]])
+        return Question.objects.get_by_tags([self.kwargs["tag"]]).get_hottest()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
 
-        context["page_obj"] = self.get_page_object(self.get_object_list())
         context["tag"] = self.kwargs["tag"]
 
         return context

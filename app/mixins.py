@@ -10,7 +10,7 @@ from .models import (
 )
 
 
-class PaginatorMixin:
+class PaginatorMixin(ContextMixin):
     objects_per_page = 10
     page_number_parameter = 'page'
 
@@ -34,6 +34,14 @@ class PaginatorMixin:
             page_object = paginator.page(paginator.num_pages)
 
         return page_object
+    
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+
+        context["page_obj"] = self.get_page_object(self.get_object_list())
+
+        return context
     
 
 class StatisticsMixin(ContextMixin):
