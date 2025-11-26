@@ -8,66 +8,68 @@
 
 <p class="fs-2 mb-5">Register</p>
 
-<p class="text-danger fs-4 mb-5">Error placeholder</p>
+{% include 'generic/form_errors_list.html' with form=form %}
 
-<form action="#" class="mx-0 mx-md-5" method="post" enctype="multipart/form-data">
+<form class="mx-0 mx-md-5" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
     <div class="row mb-3">
         <div class="col-12 mb-2">
-            Login
+            {{ form.username.label }}
         </div>
 
         <div class="col-12 col-lg-6 col-md-8">
-            <input type="text" class="w-100">
+            {{ form.username }}
         </div>
     </div>
 
     <div class="row mb-3">
         <div class="col-12 mb-2">
-            Email
+            {{ form.email.label }}
         </div>
 
         <div class="col-12 col-lg-6 col-md-8">
-            <input type="email" class="w-100">
+            {{ form.email }}
         </div>
     </div>
 
     <div class="row mb-3">
         <div class="col-12 mb-2">
-            NickName
+            {{ form.nickname.label }}
         </div>
 
         <div class="col-12 col-lg-6 col-md-8">
-            <input type="text" class="w-100">
+            {{ form.nickname }}
         </div>
     </div>
 
     <div class="row mb-5">
         <div class="col-12 mb-2">
-            Upload avatar
+            {{ form.avatar.label }}
         </div>
 
         <div class="col-12 col-lg-6 col-md-8">
-            <input type="file" class="w-100" accept="image/*">
+            {{ form.avatar }}
         </div>
     </div>
 
     <div class="row mb-3">
         <div class="col-12 mb-2">
-            Password
+            {{ form.password.label }}
         </div>
 
         <div class="col-12 col-lg-6 col-md-8">
-            <input type="password" class="w-100">
+            {{ form.password }}
         </div>
     </div>
 
     <div class="row mb-5">
         <div class="col-12 mb-2">
-            Repeat password
+            {{ form.repeat_password.label }}
         </div>
 
         <div class="col-12 col-lg-6 col-md-8">
-            <input type="password" class="w-100">
+            {{ form.repeat_password }}
         </div>
     </div>
 

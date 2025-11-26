@@ -4,10 +4,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http.request import HttpRequest
 from django.http.response import HttpResponseNotAllowed
 
-from .models import (
-    Profile,
-    Tag
-)
+from app.models import Profile, Tag
 
 
 class PaginatorMixin(ContextMixin):
@@ -37,7 +34,7 @@ class PaginatorMixin(ContextMixin):
     
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data()
+        context = super().get_context_data(**kwargs)
 
         context["page_obj"] = self.get_page_object(self.get_object_list())
 
@@ -46,7 +43,7 @@ class PaginatorMixin(ContextMixin):
 
 class StatisticsMixin(ContextMixin):
     def get_context_data(self, **kwargs):
-        context = super().get_context_data()
+        context = super().get_context_data(**kwargs)
         
         context["best_members"] = Profile.objects.get_best_members()
         context["best_tags"] = Tag.objects.get_best_tags()

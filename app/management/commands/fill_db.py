@@ -95,7 +95,7 @@ class Command(BaseCommand):
 
             users.append(user)
             profiles.append(
-                Profile(user=user)
+                Profile(user=user, nickname=self.faker.user_name())
             )
 
         User.objects.bulk_create(users, batch_size=self.batch_size)

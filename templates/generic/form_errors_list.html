@@ -1,0 +1,13 @@
+<div class="mb-5">
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <span class="d-block text-danger">{{ error }}</span>
+            {% endfor %}
+        {% endfor %}
+
+        {% for error in form.non_field_errors %}
+            <span class="d-block text-danger">{{ error }}</span>
+        {% endfor %}
+    {% endif %}
+</div>

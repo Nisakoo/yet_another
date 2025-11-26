@@ -4,12 +4,12 @@
     <div class="row">
         <div class="col-2">
             <div>
-                <img src="{% static image %}" class="middle-img d-block m-auto rounded-circle border-3 p-1" alt="Image here">
+                <img src="{{ question.profile.avatar_url }}" class="middle-img d-block m-auto rounded-circle border-3 p-1" alt="Avatar">
             </div>
         </div>
 
         <div class="col-8">
-            <a href="{% url 'question' question.id %}" class="d-block mb-3 fs-3">
+            <a href="{{ question.url }}" class="d-block mb-3 fs-3">
                 {{ question.title|default:"Title here" }}
             </a>
             <p>
@@ -22,8 +22,8 @@
             {% include 'generic/rating_buttons.html' with rating=question.rating %}
         </div>
         <div class="col-8">
-            <a href="{% url 'question' question.id %}" class="me-5">
-                Ответов ({{ question.answer_set.count|default:0 }})
+            <a href="{{ question.url }}" class="me-5">
+                Ответов ({{ question.answers_count }})
             </a>
 
             {% for tag in question.tags.all %}

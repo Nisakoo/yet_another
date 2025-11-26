@@ -11,22 +11,30 @@
                 <input type="search" class="d-block w-100" placeholder="Поиск..." aria-label="Search">
             </form>
 
-            <!-- <div>
-                <a href="{% url 'login' %}" role="button" class="mx-2">Login</a>
-                <a href="{% url 'register' %}" role="button" class="">Register</a>
-            </div> -->
+            {% if user.is_authenticated %}
+                <div class="d-flex">
+                    <div>
+                        <img src="{{ user.profile.avatar_url }}" alt="img" class="small-img border-3 p-1 me-3 rounded-circle">
+                    </div>
+                    <div>
+                        <p class="mb-0">{{ user.username }}</p>
 
-            <div class="d-flex">
-                <div>
-                    <img src="{% static 'images/image.png' %}" alt="img" class="small-img border-3 p-1 me-3 rounded-circle">
-                </div>
-                <div>
-                    <p class="mb-0">Username</p>
 
-                    <a href="#">Log Out</a>
-                    <a href="{% url 'settings' %}">Settings</a>
+                        <a href="{% url 'settings' %}">Settings</a>
+                        
+                        <form action="{% url 'logout' %}?continue={{ request.path }}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="submit-link">Log Out</button>
+                        </form>
+
+                    </div>
                 </div>
-            </div>
+            {% else %}
+                <div>
+                    <a href="{% url 'login' %}" role="button" class="mx-2">Login</a>
+                    <a href="{% url 'register' %}" role="button" class="">Register</a>
+                </div>
+            {% endif %}
         </div>
     </div>
 </header>
