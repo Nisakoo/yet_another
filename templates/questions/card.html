@@ -19,7 +19,7 @@
     </div>
     <div class="row">
         <div class="col-2">
-            {% include 'generic/rating_buttons.html' with rating=question.rating %}
+            {% include 'generic/rating_buttons.html' with rating=question.rating object_type='question' object_id=question.pk %}
         </div>
         <div class="col-8">
             <a href="{{ question.url }}" class="me-5">

@@ -1,13 +1,13 @@
 <div class="d-flex flex-wrap align-items-center justify-content-around text-center" role="group" aria-label="Rating">
-    <a href="#" role="button" class="d-flex col-12 col-lg-auto like-button align-items-center justify-content-center">
+    <a role="button" class="d-flex col-12 col-lg-auto like-button align-items-center justify-content-center" data-object-id="{{ object_type }}-{{ object_id }}" data-like="true">
         <i class="bi bi-caret-up-fill"></i>
     </a>
 
-    <div class="col-12 col-lg-auto">
+    <div class="col-12 col-lg-auto" data-object-id="{{ object_type }}-{{ object_id }}">
         {{ rating|default:0 }}
     </div>
 
-    <a href="#" role="button" class="d-flex col-12 col-lg-auto like-button align-items-center justify-content-center">
+    <a role="button" class="d-flex col-12 col-lg-auto like-button align-items-center justify-content-center" data-object-id="{{ object_type }}-{{ object_id }}" data-like="false">
         <i class="bi bi-caret-down-fill"></i>
     </a>
 </div>

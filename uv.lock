@@ -51,6 +51,15 @@ wheels = [
 ]
 
 [[package]]
+name = "marshmallow"
+version = "4.1.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/4f/81/edb105b3296712a282680bc1ae02b8c1bb45d8f1edad3ff9fab1d41e9507/marshmallow-4.1.1.tar.gz", hash = "sha256:550aa14b619072f0a8d8184911b3f1021c5c32587fb27318ddf81ce0d0029c9d", size = 220720, upload-time = "2025-12-05T22:56:09.282Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/36/c9/4364652639e3aa952f9e941c38a4f88a0eb29fcbb7bd642fe2de4322c834/marshmallow-4.1.1-py3-none-any.whl", hash = "sha256:9038db4cceb849ce2b8676ccf3d8e5b5e634ac499e291397efa260aa796c385a", size = 48295, upload-time = "2025-12-05T22:56:07.415Z" },
+]
+
+[[package]]
 name = "pillow"
 version = "12.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -190,6 +199,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "django" },
     { name = "faker" },
+    { name = "marshmallow" },
     { name = "pillow" },
     { name = "psycopg2" },
     { name = "python-dotenv" },
@@ -205,6 +215,7 @@ dev = [
 requires-dist = [
     { name = "django", specifier = ">=5.2.7" },
     { name = "faker", specifier = ">=37.12.0" },
+    { name = "marshmallow", specifier = ">=4.1.1" },
     { name = "pillow", specifier = ">=12.0.0" },
     { name = "psycopg2", specifier = ">=2.9.11" },
     { name = "python-dotenv", specifier = ">=1.2.1" },

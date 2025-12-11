@@ -13,4 +13,7 @@ urlpatterns = [
     path('tag/<str:tag>', QuestionsByTagView.as_view(), name='tag'),
     path('question/<int:question_id>', QuestionView.as_view(), name='question'),
     path('ask', AskView.as_view(), name='ask'),
+    path('api/questions/like', QuestionLikeView.as_view(), name='api-questions-like'),
+    path('api/answers/like', AnswerLikeView.as_view(), name='api-answers-like'),
+    path('api/answers/correct', AnswerCorrectView.as_view(), name='api-answers-correct'),
 ]
