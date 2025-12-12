@@ -11,18 +11,27 @@ likeButtons.forEach(button => {
     if (objectType == "question") {
         button.addEventListener("click", async function(e) {
             const response = await setQuestionLike(objectId, isLike);
-            const rating = document.querySelector(`div[data-object-id=${objectType}-${objectId}]`);
-            rating.textContent = response.rating;
+            const content = await response.json();
 
-            console.log(objectType, objectId, isLike, response);
+            if (response.ok) {
+                const rating = document.querySelector(`div[data-object-id=${objectType}-${objectId}]`);
+                rating.textContent = content.rating;
+            } else {
+                alert(content.message);
+            }
         });
     } else if (objectType == "answer") {
         button.addEventListener("click", async function(e) {
             const response = await setAnswerLike(objectId, isLike);
             const rating = document.querySelector(`div[data-object-id=${objectType}-${objectId}]`);
-            rating.textContent = response.rating;
+            const content = await response.json();
 
-            console.log(objectType, objectId, isLike, response);
+            if (response.ok) {
+                rating.textContent = content.rating;
+            } else {
+                alert(content.message);
+            }
+
         });
     }
 });
@@ -37,7 +46,13 @@ correctCheckboxes.forEach(checkbox => {
     if (objectType == "answer") {
         checkbox.addEventListener("change", async function(e) {
             const response = await setAnswerCorrect(objectId, this.checked);
-            this.checked = response.is_correct;
+            const content = await response.json();
+
+            if (response.ok) {
+                this.checked = content.is_correct;
+            } else {
+                alert(content.message);
+            }
         });
     }
 });

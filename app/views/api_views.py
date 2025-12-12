@@ -53,7 +53,6 @@ def validate_data_with(requestSchema: Schema):
 # Решил, что не буду добавлять миксин LoginRequired
 # Буду отправлять ошибки на фронт - там разберутся
 # Также отключил CSRF токен - думаю, что поставить лайк за другого не так страшно
-@method_decorator(csrf_exempt, name='dispatch')
 class QuestionLikeView(View):
     http_method_names = ["post"]
 
@@ -97,7 +96,6 @@ class QuestionLikeView(View):
             data=dict(rating=Question.objects.with_rating().get(id=question_id).rating)) # Ужас
     
 
-@method_decorator(csrf_exempt, name='dispatch')
 class AnswerLikeView(View):
     http_method_names = ["post"]
 
@@ -142,7 +140,6 @@ class AnswerLikeView(View):
             data=dict(rating=Answer.objects.with_rating().get(id=answer_id).rating)) # УЖАС
     
 
-@method_decorator(csrf_exempt, name='dispatch')
 class AnswerCorrectView(View):
     http_method_names = ["post"]
 
@@ -171,3 +168,12 @@ class AnswerCorrectView(View):
                 message="It is not your question",
                 data=dict(is_correct=answer.is_correct)
             )
+        
+
+# class GetQuestionsLikes(View):
+#     http_method_names = ["post"]
+
+#     @json_login_required
+#     @validate_data_with(GetQuestionsLikesSchema)
+#     def post(self, request):
+#         return OkResponse(status_code=200, message="Hello World")
