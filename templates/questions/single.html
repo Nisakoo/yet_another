@@ -12,7 +12,7 @@
                 class="d-block large-img m-auto rounded-circle border-3 p-1" alt="Image here">
         </div>
 
-        {% include 'generic/rating_buttons.html' with rating=question.rating object_type='question' object_id=question.pk %}
+        {% include 'generic/rating_buttons.html' with rating=question.rating_cache object_type='question' object_id=question.pk %}
     </div>
 
     <div class="col-9">
@@ -35,7 +35,7 @@
     Answers
 </p>
 
-{% for answer in question.answer_set.with_rating %}
+{% for answer in question.answers.with_related %}
     {% include 'answers/card.html' with answer=answer %}
 {% endfor %}
 

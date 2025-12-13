@@ -77,7 +77,7 @@ class QuestionLikeView(View):
             return OkResponse(
                 status_code=201,
                 message="Like set",
-                data=dict(rating=Question.objects.with_rating().get(id=question_id).rating))
+                data=dict(rating=Question.objects.get(id=question_id).rating_cache))
 
         if like.is_like == is_like:
             like.delete()
@@ -85,7 +85,7 @@ class QuestionLikeView(View):
             return OkResponse(
                 status_code=200,
                 message="Like unset",
-                data=dict(rating=Question.objects.with_rating().get(id=question_id).rating))
+                data=dict(rating=Question.objects.get(id=question_id).rating_cache))
         
         like.is_like = is_like
         like.save()
@@ -93,7 +93,7 @@ class QuestionLikeView(View):
         return OkResponse(
             status_code=200,
             message="Like updated",
-            data=dict(rating=Question.objects.with_rating().get(id=question_id).rating)) # Ужас
+            data=dict(rating=Question.objects.get(id=question_id).rating_cache)) # Ужас
     
 
 class AnswerLikeView(View):

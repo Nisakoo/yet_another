@@ -19,11 +19,11 @@
     </div>
     <div class="row">
         <div class="col-2">
-            {% include 'generic/rating_buttons.html' with rating=question.rating object_type='question' object_id=question.pk %}
+            {% include 'generic/rating_buttons.html' with rating=question.rating_cache object_type='question' object_id=question.pk %}
         </div>
         <div class="col-8">
             <a href="{{ question.url }}" class="me-5">
-                Ответов ({{ question.answers_count }})
+                Ответов ({{ question.answer_count_cache }})
             </a>
 
             {% for tag in question.tags.all %}

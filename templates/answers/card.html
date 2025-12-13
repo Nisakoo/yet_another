@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col-2">
-            {% include 'generic/rating_buttons.html' with rating=answer.rating object_type='answer' object_id=answer.pk %}
+            {% include 'generic/rating_buttons.html' with rating=answer.rating_cache object_type='answer' object_id=answer.pk %}
         </div>
         <div class="col-8">
             <input type="checkbox" {{ answer.is_correct|yesno:'checked,'}} data-object-id="answer-{{ answer.pk }}">

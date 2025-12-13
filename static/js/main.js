@@ -52,6 +52,7 @@ correctCheckboxes.forEach(checkbox => {
                 this.checked = content.is_correct;
             } else {
                 alert(content.message);
+                this.checked = !this.checked;
             }
         });
     }

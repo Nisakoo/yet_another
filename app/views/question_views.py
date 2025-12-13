@@ -21,8 +21,7 @@ class QuestionView(StatisticsMixin, TemplateView):
 
     def get_object(self):
         return get_object_or_404(
-            Question.objects.with_rating(),
-            pk=self.kwargs["question_id"]
+            Question.objects.with_related(), pk=self.kwargs["question_id"]
         )
 
     def get_context_data(self, **kwargs):

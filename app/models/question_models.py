@@ -32,6 +32,9 @@ class AnswerQuerySet(models.QuerySet):
         ).annotate(
             rating=2 * models.F("_likes") - models.F("_total")
         )
+    
+    def with_related(self):
+        return self.select_related("profile")
 
 
 class Answer(models.Model):
@@ -43,8 +46,10 @@ class Answer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    question = models.ForeignKey("Question", on_delete=models.CASCADE)
+    question = models.ForeignKey("Question", on_delete=models.CASCADE, related_name="answers")
     profile = models.ForeignKey("Profile", on_delete=models.SET_NULL, null=True)
+
+    rating_cache = models.IntegerField(default=0)
 
     def __str__(self):
         return self.text[:50]
@@ -89,19 +94,14 @@ class QuestionQuerySet(models.QuerySet):
     
     def get_by_tags(self, tags):
         return self.with_related() \
-                    .with_answers_count() \
                     .filter(tags__name__in=tags)
     
     def get_hottest(self):
         return self.with_related() \
-                    .with_rating() \
-                    .with_answers_count() \
-                    .order_by("-rating") # TODO: Слишком тяжелый запрос, что-то надо делать
+                    .order_by("-rating_cache")
 
     def get_newest(self):
         return self.with_related() \
-                    .with_rating() \
-                    .with_answers_count() \
                     .order_by("-created_at")
 
 
@@ -117,6 +117,9 @@ class Question(models.Model):
     tags = models.ManyToManyField("Tag", blank=True)
 
     profile = models.ForeignKey("Profile", on_delete=models.SET_NULL, null=True)
+
+    rating_cache = models.IntegerField(default=0)
+    answer_count_cache = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
