@@ -7,9 +7,22 @@
                 Yet another...
             </a>
 
-            <form class="col-12 col-lg-6 mb-2 mx-lg-auto mb-lg-0">
-                <input type="search" class="d-block w-100" placeholder="Поиск..." aria-label="Search">
-            </form>
+            <div class="search-container col-12 col-lg-6 mb-2 mx-lg-auto mb-lg-0 position-relative">
+                <template id="search-hint-template">
+                    <a class="d-block border-0 py-2 px-3 hint-result">Empty</a>
+                </template>
+
+                <input id="search-input" type="search" class="d-block w-100" placeholder="Поиск..." aria-label="Search">
+
+                <div id="hints" class="hints-box mt-2 position-absolute w-100" 
+                    style="display: none; z-index: 1000; max-height: 300px; overflow-y: auto;">
+
+                    <a href="#" class="d-block border-0 py-2 px-3">
+                        No results
+                    </a>
+
+                </div>
+            </div>
 
             {% if user.is_authenticated %}
                 <div class="d-flex">

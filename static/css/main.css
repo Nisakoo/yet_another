@@ -68,3 +68,9 @@ textarea {
     width: 100%;
     height: 100px;
 }
+
+.hints-box {
+    background: var(--background);
+    border: 1px solid var(--foreground);
+    border-radius: var(--radius);
+}

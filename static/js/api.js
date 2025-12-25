@@ -65,3 +65,38 @@ export async function setAnswerCorrect(answerId, isCorrect) {
 
     return response;
 }
+
+export async function getBestTags() {
+    const response = await fetch(ENDPOINTS.getBestTags, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    return response;
+}
+
+export async function getBestMembers() {
+    const response = await fetch(ENDPOINTS.getBestMembers, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    return response;
+}
+
+export async function getSearchHint(query) {
+    console.log(query);
+    const response = await fetch(
+        ENDPOINTS.getSearchHint + `?query=${encodeURIComponent(query)}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    return response;
+}

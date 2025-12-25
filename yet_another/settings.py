@@ -11,28 +11,34 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
-
-from dotenv import load_dotenv, find_dotenv
 from pathlib import Path
+import environ
 
 
-load_dotenv(find_dotenv())
+# TODO: Перейти на новый плагин для Postgresql и настроить connection pool
 
+# Init ENV
+env = environ.Env(
+    DEBUG=(bool, False)
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Read from .env
+environ.Env.read_env(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost"])
 
 INTERNAL_IPS = [
     '127.0.0.1',
@@ -89,14 +95,39 @@ WSGI_APPLICATION = 'yet_another.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("DB_NAME"),
-        'USER': os.getenv("DB_USER"),
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        'NAME': env("DB_NAME"),
+        'USER': env("DB_USER"),
+        'PASSWORD': env("DB_PASSWORD"),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
+        'OPTIONS': {
+            'pool': {
+                'min_size': 2,
+                'max_size': 4,
+                'timeout': 10,
+            }
+        }
     }
 }
 
+# Cache
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+    "session_storage": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -144,6 +175,39 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Celery
+
+CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
+CELERY_TIMEZONE = TIME_ZONE
+
+# TODO: Сделать каждые 3 минуты
+CELERY_BEAT_SCHEDULE = {
+    "update-ratings-and-answers-count": {
+        "task": "app.tasks.update_ratings_and_answers_count",
+        "schedule": 20
+    },
+    "update-best-tags": {
+        "task": "app.tasks.update_best_tags",
+        "schedule": 10
+    },
+    "update-best-members": {
+        "task": "app.tasks.update_best_members",
+        "schedule": 10
+    }
+}
+
+# Centrifugo
+
+# settings.py
+
+CENTRIFUGO_HOST = 'http://127.0.0.1:8001'
+CENTRIFUGO_API_KEY = 'my_centrifugo_api_key_12345'
+CENTRIFUGO_TOKEN_SECRET = 'aBcDeFgHiJkLmNoPqRsTuVwXyZ123456789012345678901234'
+
+
+# Logging
 
 LOGGING = {
     'version': 1,

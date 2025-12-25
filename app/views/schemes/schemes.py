@@ -16,5 +16,5 @@ class AnswerCorrectSchema(Schema):
     is_correct = fields.Boolean(required=True)
 
 
-# class GetQuestionsLikesSchema(Schema):
-#     questions_ids = fields.List(fields.Integer(), required=True)
+class SearchQuery(Schema):
+    query = fields.String(required=True)

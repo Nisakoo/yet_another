@@ -2,17 +2,15 @@ import json
 from functools import wraps
 
 from django.views import View
-from django.urls import reverse_lazy
+from django.core.cache import cache
 
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
-
-from app.models import QuestionsLikes, AnswersLikes, Question, Answer
+from app.models import QuestionsLikes, AnswersLikes, Question, Answer, Profile, Tag
 
 from marshmallow import Schema, ValidationError
 
 from .responses.responses import OkResponse, ErrorResponse
-from .schemes.schemes import QuestionLikeSchema, AnswerLikeSchema, AnswerCorrectSchema
+from .schemes.schemes import QuestionLikeSchema, AnswerLikeSchema, AnswerCorrectSchema, SearchQuery
+from app.search_index import SearchIndex
 
 
 def json_login_required(func):
@@ -170,10 +168,59 @@ class AnswerCorrectView(View):
             )
         
 
-# class GetQuestionsLikes(View):
-#     http_method_names = ["post"]
+class GetBestMembers(View):
+    http_method_names = ["get"]
 
-#     @json_login_required
-#     @validate_data_with(GetQuestionsLikesSchema)
-#     def post(self, request):
-#         return OkResponse(status_code=200, message="Hello World")
+    def get(self, request):
+        best_members = cache.get("best-members")
+
+        if best_members is None:
+            best_members = []
+
+        return OkResponse(
+            status_code=200,
+            data=dict(
+                members=best_members
+            )
+        )
+    
+
+class GetBestTags(View):
+    http_method_names = ["get"]
+
+    def get(self, request):
+        best_tags = cache.get("best-tags")
+
+        if best_tags is None:
+            best_tags = []
+
+        return OkResponse(
+            status_code=200,
+            data=dict(
+                tags=best_tags
+            )
+        )
+    
+
+class GetSearchHint(View):
+    http_method_names = ["get"]
+
+    def get(self, request):
+        query = request.GET.get("query")
+
+        index = SearchIndex()
+        result = index.search(query)
+
+        questions = Question.objects.filter(id__in=result).only("id", "title")[:5]
+
+        response = [
+            {"id": q.id, "title": q.title, "url": q.url}
+            for q in questions
+        ]
+
+        return OkResponse(
+            status_code=200,
+            data=dict(
+                result=response
+            )
+        )

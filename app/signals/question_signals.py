@@ -6,6 +6,8 @@ from django.db.models import F
 
 from app.models import Answer, Question, QuestionsLikes
 
+from app.tasks import publish_new_answer
+
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +18,18 @@ def update_answer_count(sender, instance, created, **kwargs):
         Question.objects.filter(pk=instance.question.id).update(
             answer_count_cache=F("answer_count_cache") + 1
         )
+
+        channel = f'answers:question_{instance.question_id}'
+        
+        data = {
+            'type': 'new_answer',
+            'answer_id': instance.id,
+            'text': instance.text,
+            'author': instance.profile.user.username,
+            'created_at': instance.created_at.isoformat()
+        }
+        
+        publish_new_answer(channel, data)
 
 
 @receiver(post_save, sender=QuestionsLikes)

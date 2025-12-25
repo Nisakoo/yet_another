@@ -1,10 +1,10 @@
 from .schemes import (
     QuestionLikeSchema, AnswerLikeSchema,
-    AnswerCorrectSchema
+    AnswerCorrectSchema, SearchQuery
 )
 
 
 __all__ = [
     "QuestionLikeSchema", "AnswerLikeSchema",
-    "AnswerCorrectSchema"
+    "AnswerCorrectSchema", "SearchQuery"
 ]

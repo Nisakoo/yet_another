@@ -1,0 +1,13 @@
+{% extends 'questions/list.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block questions_top_block %}
+<div class="col-10">
+    <span class="fs-2">Results: {{query}}</span>
+</div>
+
+<div class="d-flex col-2 align-items-center">
+    <a href="{% url 'ask' %}" role="button" class="fs-3">Ask!</a>
+</div>
+{% endblock %}

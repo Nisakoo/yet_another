@@ -16,4 +16,8 @@ urlpatterns = [
     path('api/questions/like', QuestionLikeView.as_view(), name='api-questions-like'),
     path('api/answers/like', AnswerLikeView.as_view(), name='api-answers-like'),
     path('api/answers/correct', AnswerCorrectView.as_view(), name='api-answers-correct'),
+    path('api/best/tags', GetBestTags.as_view(), name='api-best-tags'),
+    path('api/best/members', GetBestMembers.as_view(), name='api-best-members'),
+    path('api/hint', GetSearchHint.as_view(), name='api-hint'),
+    path('search', SearchView.as_view(), name='search'),
 ]

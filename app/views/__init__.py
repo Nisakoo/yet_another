@@ -1,8 +1,8 @@
-from .base_views import HomeView, HotQuestionsView, QuestionsByTagView
+from .base_views import HomeView, HotQuestionsView, QuestionsByTagView, SearchView
 from .question_views import QuestionView, AskView
 from .auth_views import LoginView, RegisterView, LogoutView
 from .settings_views import SettingsView
-from .api_views import QuestionLikeView, AnswerLikeView, AnswerCorrectView
+from .api_views import QuestionLikeView, AnswerLikeView, AnswerCorrectView, GetBestTags, GetBestMembers, GetSearchHint
 
 
 __all__ = [
@@ -12,4 +12,6 @@ __all__ = [
     "RegisterView", "LogoutView",
     "SettingsView", "QuestionLikeView",
     "AnswerLikeView", "AnswerCorrectView",
+    "GetBestTags", "GetBestMembers",
+    "GetSearchHint", "SearchView"
 ]

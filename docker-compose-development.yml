@@ -13,6 +13,24 @@ services:
       - postgres_data:/var/lib/postgresql
     env_file:
       - .env
+  
+  redis:
+    image: redis:alpine
+    ports:
+      - "127.0.0.1:6379:6379"
+
+  # centrifugo:
+  #   container_name: centrifugo
+  #   image: centrifugo/centrifugo:v6
+  #   volumes:
+  #     - ./config.json:/centrifugo/config.json
+  #   command: centrifugo -c config.json
+  #   ports:
+  #     - 127.0.0.1:8001:8000
+  #   ulimits:
+  #     nofile:
+  #       soft: 65535
+  #       hard: 65535
 
   nginx:
     image: nginx:1.29-alpine
@@ -23,6 +41,10 @@ services:
       - ./media:/app/media:ro
     ports:
       - "80:80"
+    depends_on:
+      - db
+      - redis
+      # - centrifugo
     
 
 volumes:

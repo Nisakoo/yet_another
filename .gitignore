@@ -18,6 +18,9 @@ wheels/
 media/
 *.log
 
+# Celery
+celerybeat-schedule.db
+
 # IDE
 .vscode/
 
